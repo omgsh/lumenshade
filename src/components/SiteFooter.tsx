@@ -16,6 +16,7 @@ export function SiteFooter() {
           <ul className="space-y-2">
             <li><Link to="/how-it-works" className="hover:text-amber">How it works</Link></li>
             <li><Link to="/features" className="hover:text-amber">Features</Link></li>
+            <li><Link to="/pricing" className="hover:text-amber">Pricing</Link></li>
             <li><Link to="/compare" className="hover:text-amber">vs Night Eye</Link></li>
             <li><Link to="/download" className="hover:text-amber">Download</Link></li>
           </ul>
