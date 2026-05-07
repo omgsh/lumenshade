@@ -30,14 +30,12 @@ export function BeforeAfter() {
       <div className="absolute inset-0">
         <FakePage variant="smart" />
       </div>
-      {/* LEFT (clipped): naive invert (full CSS filter on the original light page) */}
+      {/* LEFT (clipped): the original white website, untouched */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
-        <div style={{ filter: "invert(1) hue-rotate(180deg)", height: "100%" }}>
-          <FakePage variant="light" />
-        </div>
+        <FakePage variant="light" />
       </div>
       {/* divider */}
       <div
@@ -48,8 +46,8 @@ export function BeforeAfter() {
           ⇄
         </div>
       </div>
-      <div className="absolute top-3 left-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded bg-black/70 text-white">
-        Naive invert
+      <div className="absolute top-3 left-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded bg-white text-black border border-black/10">
+        Original site
       </div>
       <div className="absolute top-3 right-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded bg-amber text-ink">
         LumenShade
