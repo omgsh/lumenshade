@@ -155,7 +155,6 @@ function Pricing() {
 
       <div className="mt-16 grid md:grid-cols-3 gap-6 text-sm">
         {[
-          ["7-day refund", "Not happy? Email us within a week for a full refund."],
           ["No tracking", "Even on Pro. Sync is opt-in and end-to-end encrypted."],
           ["Built by 2 people", "Independent. No VC. Your money funds the work."],
         ].map(([t, d]) => (
