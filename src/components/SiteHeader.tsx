@@ -4,6 +4,7 @@ import { Moon } from "lucide-react";
 const nav = [
   { to: "/how-it-works", label: "How it works" },
   { to: "/features", label: "Features" },
+  { to: "/pricing", label: "Pricing" },
   { to: "/compare", label: "Compare" },
   { to: "/faq", label: "FAQ" },
 ] as const;
