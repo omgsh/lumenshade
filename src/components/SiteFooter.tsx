@@ -25,6 +25,7 @@ export function SiteFooter() {
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Resources</div>
           <ul className="space-y-2">
             <li><Link to="/faq" className="hover:text-amber">FAQ</Link></li>
+            <li><Link to="/privacy" className="hover:text-amber">Privacy</Link></li>
           </ul>
         </div>
       </div>
