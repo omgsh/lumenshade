@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download } from "lucide-react";
+import { Download, AlertTriangle, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/download")({
   head: () => ({
@@ -48,6 +49,34 @@ function DownloadPage() {
         <Download className="h-5 w-5" /> Download lumenshade.zip
       </button>
 
+      <div className="mt-8 flex items-start gap-3 border border-amber/40 bg-amber/5 rounded-xl p-5">
+        <AlertTriangle className="h-5 w-5 text-amber shrink-0 mt-0.5" />
+        <div className="text-sm">
+          <div className="font-display text-base text-foreground">Restart Chrome after installing</div>
+          <div className="text-muted-foreground mt-1">
+            LumenShade runs at page-load time. Quit Chrome completely and reopen
+            it after Load unpacked, otherwise tabs you already have open won't
+            be styled.
+          </div>
+        </div>
+      </div>
+
+      <Link
+        to="/pricing"
+        className="mt-6 flex items-center justify-between gap-4 border hairline rounded-xl p-5 hover:border-amber/60 transition-colors group"
+      >
+        <div className="flex items-start gap-3">
+          <Sparkles className="h-5 w-5 text-amber shrink-0 mt-0.5" />
+          <div className="text-sm">
+            <div className="font-display text-base">Want more? LumenShade Pro from $6/yr</div>
+            <div className="text-muted-foreground mt-1">
+              Custom palettes, per-element overrides, cloud sync, reading mode. Lifetime $25.
+            </div>
+          </div>
+        </div>
+        <span className="text-amber text-sm group-hover:translate-x-0.5 transition-transform">See plans →</span>
+      </Link>
+
       <div className="mt-16 border hairline rounded-2xl p-8 md:p-10">
         <div className="font-display text-2xl mb-6">Install in 4 steps</div>
         <ol className="space-y-6">
@@ -55,7 +84,8 @@ function DownloadPage() {
             ["Unzip the downloaded file", "Extract lumenshade.zip anywhere on your computer."],
             ["Open chrome://extensions", "In Chrome, Edge, Brave, Arc, or Opera. Just paste it into the address bar."],
             ["Enable Developer mode", "Toggle in the top-right corner of the extensions page."],
-            ["Click Load unpacked", "Select the unzipped LumenShade folder. Done."],
+            ["Click Load unpacked", "Select the unzipped LumenShade folder."],
+            ["Restart Chrome", "Quit completely and reopen so existing tabs pick up dark mode."],
           ].map(([t, d], i) => (
             <li key={t} className="flex gap-5">
               <div className="font-mono text-amber text-sm pt-1">0{i + 1}</div>
