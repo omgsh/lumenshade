@@ -78,7 +78,7 @@ function DownloadPage() {
       </Link>
 
       <div className="mt-16 border hairline rounded-2xl p-8 md:p-10">
-        <div className="font-display text-2xl mb-6">Install in 4 steps</div>
+        <div className="font-display text-2xl mb-6">Install in 5 steps</div>
         <ol className="space-y-6">
           {[
             ["Unzip the downloaded file", "Extract lumenshade.zip anywhere on your computer."],
