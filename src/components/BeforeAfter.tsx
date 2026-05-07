@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 
 /**
- * Visual demo: simulated webpage, with a slider revealing
- * naive-invert (left, ugly) vs LumenShade smart remap (right).
- * Pure CSS — no real screenshots needed.
+ * Realistic light website rendered twice:
+ *   - Left clip: full CSS `invert(1) hue-rotate(180deg)` (what naive
+ *     dark-mode tools and browser inversion actually do — destroys
+ *     images, shifts brand colors into wrong hues, washed-out grays).
+ *   - Right: LumenShade's perceptual remap (warm dark surfaces, brand
+ *     colors preserved, photo untouched, text comfortable).
  */
 export function BeforeAfter() {
   const [pos, setPos] = useState(50);
@@ -21,16 +24,20 @@ export function BeforeAfter() {
       ref={ref}
       onMouseMove={(e) => e.buttons === 1 && onMove(e.clientX)}
       onTouchMove={(e) => onMove(e.touches[0].clientX)}
-      className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border hairline shadow-2xl select-none cursor-ew-resize"
+      className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border hairline shadow-2xl select-none cursor-ew-resize bg-black"
     >
-      {/* RIGHT (full): smart remap */}
-      <FakePage variant="smart" />
-      {/* LEFT (clipped): naive invert */}
+      {/* RIGHT: LumenShade smart */}
+      <div className="absolute inset-0">
+        <FakePage variant="smart" />
+      </div>
+      {/* LEFT (clipped): naive invert (full CSS filter on the original light page) */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
-        <FakePage variant="invert" />
+        <div style={{ filter: "invert(1) hue-rotate(180deg)", height: "100%" }}>
+          <FakePage variant="light" />
+        </div>
       </div>
       {/* divider */}
       <div
@@ -41,8 +48,7 @@ export function BeforeAfter() {
           ⇄
         </div>
       </div>
-      {/* labels */}
-      <div className="absolute top-3 left-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded bg-black/60 text-white">
+      <div className="absolute top-3 left-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded bg-black/70 text-white">
         Naive invert
       </div>
       <div className="absolute top-3 right-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded bg-amber text-ink">
@@ -58,51 +64,140 @@ export function BeforeAfter() {
   );
 }
 
-function FakePage({ variant }: { variant: "invert" | "smart" }) {
-  // "invert" = hue-rotated, washed out, brand colors broken
-  // "smart"  = warm dark, brand colors preserved
+/**
+ * "light"  = the original bright website. The CSS invert filter is applied
+ *            on top of this in the parent — so we just render the source.
+ * "smart"  = what LumenShade produces: warm dark, brand intact, photo intact.
+ */
+function FakePage({ variant }: { variant: "light" | "smart" }) {
   const isSmart = variant === "smart";
-  const bg = isSmart ? "oklch(0.16 0.012 60)" : "oklch(0.18 0.05 240)";
-  const surface = isSmart ? "oklch(0.22 0.014 60)" : "oklch(0.25 0.07 220)";
-  const text = isSmart ? "oklch(0.94 0.015 80)" : "oklch(0.85 0.04 150)";
-  const muted = isSmart ? "oklch(0.68 0.02 70)" : "oklch(0.6 0.05 130)";
-  const accent = isSmart ? "oklch(0.78 0.16 65)" : "oklch(0.6 0.18 320)"; // brand red→cyan-ish on invert
-  const link = isSmart ? "oklch(0.75 0.13 230)" : "oklch(0.7 0.15 50)";
+
+  // Theme tokens
+  const bg = isSmart ? "#1a160e" : "#ffffff";
+  const surface = isSmart ? "#241d12" : "#f6f4ef";
+  const surface2 = isSmart ? "#2c2418" : "#ebe7df";
+  const text = isSmart ? "#ece2cf" : "#1a1a1a";
+  const muted = isSmart ? "#a89b85" : "#6b6b6b";
+  const border = isSmart ? "#3a3020" : "#e3ddd0";
+
+  // Brand identity — must SURVIVE through LumenShade, get destroyed by invert
+  const brandRed = isSmart ? "#e64545" : "#d92828";   // strong red brand
+  const brandOrange = isSmart ? "#f08a3c" : "#ee7a1f";
+  const linkBlue = isSmart ? "#7ab8ff" : "#1a73e8";   // link blue
+  const successGreen = isSmart ? "#5fcc8e" : "#1f9d55";
+
   return (
-    <div className="absolute inset-0 p-6 grid grid-cols-12 gap-4" style={{ background: bg, color: text, fontFamily: "Inter, sans-serif" }}>
-      <div className="col-span-3 rounded-lg p-4 space-y-3" style={{ background: surface }}>
-        <div className="h-3 w-20 rounded" style={{ background: accent }} />
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="h-2 rounded" style={{ background: muted, width: `${50 + ((i*13)%50)}%`, opacity: 0.4 }} />
-        ))}
+    <div
+      className="absolute inset-0 flex flex-col"
+      style={{ background: bg, color: text, fontFamily: "Inter, system-ui, sans-serif" }}
+    >
+      {/* Browser-style top bar */}
+      <div className="flex items-center gap-2 px-3 py-2 border-b" style={{ borderColor: border, background: surface }}>
+        <div className="flex gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
+        </div>
+        <div className="flex-1 mx-3 h-5 rounded text-[10px] flex items-center px-2"
+          style={{ background: bg, color: muted, border: `1px solid ${border}` }}>
+          chronicle.example.com/article
+        </div>
       </div>
-      <div className="col-span-9 space-y-4">
-        <div className="font-display text-2xl" style={{ fontFamily: "Fraunces, serif" }}>
-          The future of reading is comfortable.
-        </div>
-        <div className="text-xs" style={{ color: muted }}>
-          By Maria Chen · 6 min read
-        </div>
-        <div className="space-y-2">
-          {[92, 78, 88, 65, 84].map((w, i) => (
-            <div key={i} className="h-2 rounded-full" style={{ background: text, opacity: 0.55, width: `${w}%` }} />
-          ))}
-        </div>
-        <div className="rounded-lg p-3 flex gap-3" style={{ background: surface }}>
-          <div className="h-12 w-12 rounded" style={{ background: `linear-gradient(135deg, ${accent}, ${link})` }} />
-          <div className="flex-1 space-y-2">
-            <div className="h-2 rounded" style={{ background: text, opacity: 0.6, width: "70%" }} />
-            <div className="h-2 rounded" style={{ background: muted, width: "40%" }} />
+
+      {/* Site header */}
+      <div className="flex items-center justify-between px-6 py-3 border-b" style={{ borderColor: border }}>
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded" style={{ background: brandRed }} />
+          <div className="font-bold text-sm" style={{ fontFamily: "Fraunces, serif" }}>
+            The Chronicle
           </div>
-          <button className="text-xs px-3 py-1 rounded-full self-center" style={{ background: accent, color: "#1a1206" }}>
-            Read
-          </button>
         </div>
-        <div className="space-y-2">
-          {[95, 82, 70].map((w, i) => (
-            <div key={i} className="h-2 rounded-full" style={{ background: text, opacity: 0.55, width: `${w}%` }} />
+        <div className="hidden md:flex gap-4 text-[11px]" style={{ color: muted }}>
+          <span>News</span><span>Culture</span><span>Tech</span><span>Opinion</span>
+        </div>
+        <button className="text-[11px] font-bold px-3 py-1.5 rounded" style={{ background: brandRed, color: "#fff" }}>
+          Subscribe
+        </button>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 grid grid-cols-12 gap-4 p-5 overflow-hidden">
+        {/* Sidebar */}
+        <aside className="col-span-3 space-y-3">
+          <div className="text-[10px] uppercase tracking-widest font-bold" style={{ color: brandRed }}>
+            Trending
+          </div>
+          {[
+            "Why OKLCH won the color wars",
+            "Designers ditch Material",
+            "The end of 60Hz",
+          ].map((t, i) => (
+            <div key={i} className="space-y-1 pb-2 border-b" style={{ borderColor: border }}>
+              <div className="text-[11px] leading-snug" style={{ color: text }}>{t}</div>
+              <div className="text-[9px]" style={{ color: muted }}>{(i + 2) * 4} min read</div>
+            </div>
           ))}
-        </div>
+        </aside>
+
+        {/* Main article */}
+        <article className="col-span-9 space-y-3">
+          {/* Real photo (CSS gradient simulating a photo) — invert WILL ruin this */}
+          <div
+            className="w-full rounded-lg overflow-hidden relative"
+            style={{
+              height: "38%",
+              background: isSmart
+                // smart leaves photo basically alone (subtle dim)
+                ? "linear-gradient(135deg, #c87850 0%, #8b4a2a 30%, #4a3520 60%, #1f2c44 100%)"
+                : "linear-gradient(135deg, #e89968 0%, #a05a30 30%, #5a4028 60%, #243558 100%)",
+              filter: isSmart ? "brightness(0.85)" : "none",
+            }}
+          >
+            {/* Sun in photo */}
+            <div className="absolute top-3 right-6 w-10 h-10 rounded-full"
+              style={{ background: isSmart ? "#f5d488" : "#fff4c0", boxShadow: "0 0 24px rgba(255,220,140,0.6)" }} />
+            <div className="absolute bottom-2 left-3 text-[9px] text-white/90 font-medium">
+              Photo: Sunset over the desert
+            </div>
+          </div>
+
+          <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: brandRed }}>
+            Technology · Long read
+          </div>
+          <h1 className="text-xl leading-tight font-bold" style={{ fontFamily: "Fraunces, serif", color: text }}>
+            The quiet revolution in how the web handles color.
+          </h1>
+          <div className="text-[10px]" style={{ color: muted }}>
+            By Maria Chen · 6 min read · <span style={{ color: linkBlue }}>Share</span>
+          </div>
+          <p className="text-[11px] leading-relaxed" style={{ color: text }}>
+            For three decades, designers reached for HSL when they wanted to talk
+            about color in code. It was easy and it was wrong — equal lightness
+            values produced wildly unequal brightness. <span style={{ color: linkBlue, textDecoration: "underline" }}>Read more</span> about why
+            OKLCH is finally fixing that, and what it means for accessibility.
+          </p>
+
+          {/* Callout card with brand color */}
+          <div className="rounded-lg p-3 flex items-center gap-3"
+            style={{ background: surface, border: `1px solid ${border}` }}>
+            <div className="w-9 h-9 rounded flex items-center justify-center font-bold text-sm"
+              style={{ background: brandOrange, color: "#fff" }}>
+              !
+            </div>
+            <div className="flex-1">
+              <div className="text-[11px] font-semibold" style={{ color: text }}>
+                Get the deep dive in your inbox
+              </div>
+              <div className="text-[10px]" style={{ color: muted }}>
+                Weekly. Free. Unsubscribe anytime.
+              </div>
+            </div>
+            <button className="text-[10px] font-bold px-3 py-1.5 rounded"
+              style={{ background: successGreen, color: "#fff" }}>
+              Subscribe
+            </button>
+          </div>
+        </article>
       </div>
     </div>
   );
