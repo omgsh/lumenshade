@@ -68,3 +68,23 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 footer button { background: transparent; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; }
 footer button:hover { color: var(--amber); }
 footer a { color: var(--muted); font-size: 11px; text-decoration: none; font-family: ui-monospace, monospace; }
+
+.notice {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: color-mix(in oklab, var(--amber) 12%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--amber) 45%, var(--border));
+  border-radius: 12px; padding: 10px 12px; position: relative;
+}
+.notice.hidden { display: none; }
+.notice-icon {
+  width: 20px; height: 20px; border-radius: 50%; background: var(--amber); color: var(--bg);
+  display: grid; place-items: center; font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.notice-body { flex: 1; }
+.notice-title { font-size: 12px; font-weight: 600; color: var(--fg); }
+.notice-text { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.notice-dismiss {
+  background: transparent; border: 0; color: var(--muted); font-size: 18px;
+  cursor: pointer; line-height: 1; padding: 0 2px;
+}
+.notice-dismiss:hover { color: var(--fg); }

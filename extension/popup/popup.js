@@ -70,4 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
   $("reset").addEventListener("click", () => {
     chrome.storage.local.clear(() => chrome.storage.local.set(DEFAULTS, () => { state = { ...DEFAULTS }; render(); }));
   });
+
+  // Restart-Chrome notice — dismissible, persisted
+  const notice = $("restart-notice");
+  chrome.storage.local.get("restartDismissed", (d) => {
+    if (d.restartDismissed) notice.classList.add("hidden");
+  });
+  $("dismiss-restart").addEventListener("click", () => {
+    notice.classList.add("hidden");
+    chrome.storage.local.set({ restartDismissed: true });
+  });
 });
