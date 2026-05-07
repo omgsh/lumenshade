@@ -77,10 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "LumenShade — Dark mode that actually looks designed" },
       { name: "description", content: "A Chrome extension that perceptually remaps web colors with OKLCH. Eye-friendly dark mode that preserves brand and beauty — not just inverted." },
       { name: "author", content: "LumenShade" },
-      { property: "og:title", content: "LumenShade — Smart dark mode for Chrome" },
-      { property: "og:description", content: "Perceptual color remapping. Not inversion. Free and open." },
+      { property: "og:title", content: "LumenShade — Dark mode that actually looks designed" },
+      { property: "og:description", content: "A Chrome extension that perceptually remaps web colors with OKLCH. Eye-friendly dark mode that preserves brand and beauty — not just inverted." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "LumenShade — Dark mode that actually looks designed" },
+      { name: "twitter:description", content: "A Chrome extension that perceptually remaps web colors with OKLCH. Eye-friendly dark mode that preserves brand and beauty — not just inverted." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cec7be69-e77d-4a88-8c41-d5a395c8c947/id-preview-0dfb7c3e--e963bb0b-e329-4435-9f01-ebcc756bdfba.lovable.app-1778130098624.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cec7be69-e77d-4a88-8c41-d5a395c8c947/id-preview-0dfb7c3e--e963bb0b-e329-4435-9f01-ebcc756bdfba.lovable.app-1778130098624.png" },
     ],
     links: [
       {
