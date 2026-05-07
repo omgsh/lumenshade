@@ -153,7 +153,7 @@ function Pricing() {
         ))}
       </div>
 
-      <div className="mt-16 grid md:grid-cols-3 gap-6 text-sm">
+      <div className="mt-16 grid md:grid-cols-2 gap-6 text-sm">
         {[
           ["No tracking", "Even on Pro. Sync is opt-in and end-to-end encrypted."],
           ["Built by 2 people", "Independent. No VC. Your money funds the work."],
