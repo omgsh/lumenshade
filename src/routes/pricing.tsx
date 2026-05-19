@@ -126,12 +126,14 @@ function Pricing() {
               ))}
             </ul>
             {t.name === "Free" ? (
-              <Link
-                to="/download"
+              <a
+                href="https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-7 inline-flex items-center justify-center rounded-full px-4 py-2.5 text-sm font-medium border hairline hover:bg-card transition-colors"
               >
                 {t.cta}
-              </Link>
+              </a>
             ) : (
               <button
                 type="button"

@@ -18,7 +18,16 @@ export function SiteFooter() {
             <li><Link to="/features" className="hover:text-amber">Features</Link></li>
             <li><Link to="/pricing" className="hover:text-amber">Pricing</Link></li>
             <li><Link to="/compare" className="hover:text-amber">vs Night Eye</Link></li>
-            <li><Link to="/download" className="hover:text-amber">Download</Link></li>
+            <li>
+              <a
+                href="https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-amber"
+              >
+                Download
+              </a>
+            </li>
           </ul>
         </div>
         <div className="text-sm">

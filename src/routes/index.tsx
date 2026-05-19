@@ -32,12 +32,14 @@ function Home() {
             comfort and the web keeps its character.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              to="/download"
+            <a
+              href="https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-amber text-ink px-6 py-3 rounded-full font-medium hover:bg-amber-soft transition-colors"
             >
               Add to Chrome — Free <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
             <Link
               to="/how-it-works"
               className="inline-flex items-center gap-2 border hairline px-6 py-3 rounded-full font-medium hover:bg-card transition-colors"
@@ -103,12 +105,14 @@ function Home() {
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
             Free, open, and small. About 18 KB after gzip.
           </p>
-          <Link
-            to="/download"
+          <a
+            href="https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 bg-amber text-ink px-6 py-3 rounded-full font-medium hover:bg-amber-soft transition-colors"
           >
-            Download LumenShade <ArrowRight className="h-4 w-4" />
-          </Link>
+            Add to Chrome — Free <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
     </>

@@ -15,22 +15,6 @@ export const Route = createFileRoute("/download")({
 });
 
 function DownloadPage() {
-  const handleDownload = () => {
-    fetch("/lumenshade.zip")
-      .then((res) => {
-        if (!res.ok) throw new Error(`Download failed: ${res.status}`);
-        return res.blob();
-      })
-      .then((blob) => {
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "lumenshade.zip";
-        a.click();
-        URL.revokeObjectURL(a.href);
-      })
-      .catch((err) => alert(err.message));
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">Download</div>
@@ -42,12 +26,14 @@ function DownloadPage() {
         It takes about 30 seconds.
       </p>
 
-      <button
-        onClick={handleDownload}
+      <a
+        href="https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh"
+        target="_blank"
+        rel="noopener noreferrer"
         className="mt-10 inline-flex items-center gap-3 bg-amber text-ink px-7 py-4 rounded-full text-lg font-medium hover:bg-amber-soft transition-colors"
       >
-        <Download className="h-5 w-5" /> Download lumenshade.zip
-      </button>
+        <Download className="h-5 w-5" /> Add to Chrome
+      </a>
 
       <div className="mt-8 flex items-start gap-3 border border-amber/40 bg-amber/5 rounded-xl p-5">
         <AlertTriangle className="h-5 w-5 text-amber shrink-0 mt-0.5" />
