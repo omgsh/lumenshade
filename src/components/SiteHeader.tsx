@@ -1,5 +1,8 @@
-import { Link } from "@tanstack/react-router";
 import { Moon } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
+const CHROME_STORE_URL =
+  "https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh";
 
 const nav = [
   { to: "/how-it-works", label: "How it works" },
@@ -31,12 +34,14 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link
-          to="/download"
+        <a
+          href={CHROME_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-amber text-ink px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-soft transition-colors"
         >
           Get the extension
-        </Link>
+        </a>
       </div>
     </header>
   );
