@@ -1,18 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import React from "react";
 
-export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — LumenShade" },
-      { name: "description", content: "How LumenShade handles your data. Short version: we don't collect it." },
-      { property: "og:title", content: "LumenShade Privacy Policy" },
-      { property: "og:description", content: "No tracking. No accounts required. Settings stay on your device." },
-    ],
-  }),
-  component: Privacy,
-});
-
-function Privacy() {
+export default function Privacy() {
   const updated = "May 7, 2026";
   return (
     <div className="max-w-3xl mx-auto px-6 py-20">

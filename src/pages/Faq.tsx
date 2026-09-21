@@ -1,17 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/faq")({
-  head: () => ({
-    meta: [
-      { title: "FAQ — LumenShade" },
-      { name: "description", content: "Common questions about LumenShade smart dark mode." },
-      { property: "og:title", content: "LumenShade FAQ" },
-      { property: "og:description", content: "Answers to common questions." },
-    ],
-  }),
-  component: Faq,
-});
-
 const qa = [
   { q: "Is LumenShade really free?", a: "Yes. No paywall, no trial. The extension is free now and forever." },
   { q: "Does LumenShade collect my browsing data?", a: "No. Everything runs locally in your browser. There's no telemetry, no analytics, and no account system." },
@@ -22,7 +8,7 @@ const qa = [
   { q: "Does it support Firefox?", a: "Not yet. Chromium first (Chrome, Edge, Brave, Arc, Opera). Firefox support is on the roadmap." },
 ];
 
-function Faq() {
+export default function Faq() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">FAQ</div>

@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 
 export function SiteFooter() {
   return (
@@ -14,16 +14,16 @@ export function SiteFooter() {
         <div className="text-sm">
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Product</div>
           <ul className="space-y-2">
-            <li><Link to="/how-it-works" className="hover:text-amber">How it works</Link></li>
-            <li><Link to="/features" className="hover:text-amber">Features</Link></li>
-            <li><Link to="/pricing" className="hover:text-amber">Pricing</Link></li>
-            <li><Link to="/compare" className="hover:text-amber">vs Night Eye</Link></li>
+            <li><Link to="/how-it-works" className="hover:text-amber transition-colors">How it works</Link></li>
+            <li><Link to="/features" className="hover:text-amber transition-colors">Features</Link></li>
+            <li><Link to="/pricing" className="hover:text-amber transition-colors">Pricing</Link></li>
+            <li><Link to="/compare" className="hover:text-amber transition-colors">vs Night Eye</Link></li>
             <li>
               <a
                 href="https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-amber"
+                className="hover:text-amber transition-colors"
               >
                 Download
               </a>
@@ -33,8 +33,8 @@ export function SiteFooter() {
         <div className="text-sm">
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Resources</div>
           <ul className="space-y-2">
-            <li><Link to="/faq" className="hover:text-amber">FAQ</Link></li>
-            <li><Link to="/privacy" className="hover:text-amber">Privacy</Link></li>
+            <li><Link to="/faq" className="hover:text-amber transition-colors">FAQ</Link></li>
+            <li><Link to="/privacy" className="hover:text-amber transition-colors">Privacy</Link></li>
           </ul>
         </div>
       </div>

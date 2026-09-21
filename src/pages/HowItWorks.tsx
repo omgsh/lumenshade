@@ -1,17 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/how-it-works")({
-  head: () => ({
-    meta: [
-      { title: "How LumenShade works — OKLCH perceptual remapping" },
-      { name: "description", content: "A step-by-step look at the smart color conversion algorithm behind LumenShade." },
-      { property: "og:title", content: "How LumenShade works" },
-      { property: "og:description", content: "Color science, not inversion. Here's the algorithm." },
-    ],
-  }),
-  component: HowItWorks,
-});
-
 const steps = [
   { n: "01", t: "Walk the DOM", d: "On document_start, LumenShade scans every element and reads its computed color, background, border, fill, stroke, and shadows — including pseudo-elements." },
   { n: "02", t: "Parse to OKLCH", d: "Every color is converted from sRGB into OKLab, then OKLCH — a perceptually uniform color space designed to match how human vision actually perceives light." },
@@ -23,7 +9,7 @@ const steps = [
   { n: "08", t: "Observe and adapt", d: "A debounced MutationObserver re-runs classification on dynamically added nodes — single-page apps stay consistent." },
 ];
 
-function HowItWorks() {
+export default function HowItWorks() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">The Algorithm</div>

@@ -1,17 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Check, Minus, X } from "lucide-react";
-
-export const Route = createFileRoute("/compare")({
-  head: () => ({
-    meta: [
-      { title: "LumenShade vs Night Eye vs Dark Reader" },
-      { name: "description", content: "An honest comparison of dark mode extensions for Chrome." },
-      { property: "og:title", content: "Compare dark mode extensions" },
-      { property: "og:description", content: "How LumenShade stacks up against Night Eye and Dark Reader." },
-    ],
-  }),
-  component: Compare,
-});
 
 type Cell = boolean | "partial" | string;
 const rows: { feature: string; lumen: Cell; nightEye: Cell; darkReader: Cell; invert: Cell }[] = [
@@ -35,7 +22,7 @@ function CellIcon({ v }: { v: Cell }) {
   return <span className="text-sm text-muted-foreground">{v}</span>;
 }
 
-function Compare() {
+export default function Compare() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">Compare</div>

@@ -1,5 +1,5 @@
 import { Moon } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 
 const CHROME_STORE_URL =
   "https://chromewebstore.google.com/detail/lumenshade-%E2%80%94-smart-dark-m/hkjpcdinaoicljnndoeoalaabdpododh";
@@ -24,14 +24,17 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {nav.map((n) => (
-            <Link
+            <NavLink
               key={n.to}
               to={n.to}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              activeProps={{ className: "text-foreground" }}
+              className={({ isActive }) =>
+                `transition-colors ${
+                  isActive ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+                }`
+              }
             >
               {n.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
         <a

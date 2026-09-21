@@ -1,20 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Download, AlertTriangle, Sparkles } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Download as DownloadIcon, AlertTriangle, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
-export const Route = createFileRoute("/download")({
-  head: () => ({
-    meta: [
-      { title: "Download LumenShade" },
-      { name: "description", content: "Install LumenShade as an unpacked Chrome extension in 4 quick steps." },
-      { property: "og:title", content: "Download LumenShade" },
-      { property: "og:description", content: "Free dark mode extension for Chromium browsers." },
-    ],
-  }),
-  component: DownloadPage,
-});
-
-function DownloadPage() {
+export default function Download() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">Download</div>
@@ -32,7 +19,7 @@ function DownloadPage() {
         rel="noopener noreferrer"
         className="mt-10 inline-flex items-center gap-3 bg-amber text-ink px-7 py-4 rounded-full text-lg font-medium hover:bg-amber-soft transition-colors"
       >
-        <Download className="h-5 w-5" /> Add to Chrome
+        <DownloadIcon className="h-5 w-5" /> Add to Chrome
       </a>
 
       <div className="mt-8 flex items-start gap-3 border border-amber/40 bg-amber/5 rounded-xl p-5">

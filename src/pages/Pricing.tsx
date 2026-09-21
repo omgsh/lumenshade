@@ -1,17 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Check, Sparkles } from "lucide-react";
-
-export const Route = createFileRoute("/pricing")({
-  head: () => ({
-    meta: [
-      { title: "Pricing — LumenShade Pro" },
-      { name: "description", content: "Free forever. Or unlock Pro for advanced tuning, sync, and lifetime access." },
-      { property: "og:title", content: "LumenShade Pricing" },
-      { property: "og:description", content: "Pro plans starting at $6/mo. Lifetime for $25." },
-    ],
-  }),
-  component: Pricing,
-});
 
 type Tier = {
   name: string;
@@ -83,7 +71,7 @@ const tiers: Tier[] = [
   },
 ];
 
-function Pricing() {
+export default function Pricing() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">Pricing</div>
@@ -139,7 +127,7 @@ function Pricing() {
                 type="button"
                 onClick={() =>
                   alert(
-                    "Checkout will be wired up next. Enable Lovable Cloud + payments to accept real payments."
+                    "Checkout will be wired up next. Enable cloud payments to accept real subscriptions."
                   )
                 }
                 className={`mt-7 inline-flex items-center justify-center rounded-full px-4 py-2.5 text-sm font-medium transition-colors ${

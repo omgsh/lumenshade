@@ -1,20 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { ArrowRight, Eye, Layers, Palette, Shield, Sparkles, Zap } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "LumenShade — Smart dark mode for Chrome" },
-      { name: "description", content: "Not inversion. Perceptual color remapping in OKLCH that preserves brand identity, image fidelity, and reading comfort." },
-      { property: "og:title", content: "LumenShade — Smart dark mode for Chrome" },
-      { property: "og:description", content: "The dark mode extension built on color science. Free." },
-    ],
-  }),
-  component: Home,
-});
-
-function Home() {
+export default function Index() {
   return (
     <>
       {/* HERO */}
@@ -24,7 +12,7 @@ function Home() {
             <Sparkles className="h-3 w-3" /> A new approach to dark mode
           </div>
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] text-balance max-w-4xl">
-            Dark mode that <em className="italic text-amber not-italic" style={{fontStyle:"italic"}}>actually</em> looks designed.
+            Dark mode that <em className="italic text-amber" style={{ fontStyle: "italic" }}>actually</em> looks designed.
           </h1>
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl text-balance">
             Most dark mode tools just invert your screen. LumenShade analyzes every color

@@ -1,17 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Globe, Image, Sliders, Sun, ToggleLeft } from "lucide-react";
-
-export const Route = createFileRoute("/features")({
-  head: () => ({
-    meta: [
-      { title: "Features — LumenShade" },
-      { name: "description", content: "Per-site control, schedule, sliders for brightness/contrast/warmth, and image dimming." },
-      { property: "og:title", content: "LumenShade features" },
-      { property: "og:description", content: "Everything you need to make the web comfortable to read at night." },
-    ],
-  }),
-  component: Features,
-});
 
 const features = [
   { icon: ToggleLeft, t: "Per-site toggle", d: "One click to disable LumenShade on the current domain. Your preference is remembered forever." },
@@ -22,7 +9,7 @@ const features = [
   { icon: Sun, t: "Quick toggle", d: "Keyboard shortcut (Alt+Shift+D) to flip dark mode on or off instantly." },
 ];
 
-function Features() {
+export default function Features() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-20">
       <div className="text-xs uppercase tracking-[0.2em] text-amber">Features</div>
